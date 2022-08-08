@@ -87,7 +87,7 @@ def readNotice(request):
         """<title>阅读官方通知</title>
 <h1>官方通知</h1>
 <hr><br>
-<iframe src="https://http://pandaoxi-project.github.io/very-control/" width="800" height="450"></iframe>
+<iframe src="https://pandaoxi-project.github.io/very-control/" width="800" height="450"></iframe>
 <p>页面加载较慢是正常现象，请耐心等候。</p>
 <br><hr>
 <p>软件信息：</p>
