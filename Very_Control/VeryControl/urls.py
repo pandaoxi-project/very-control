@@ -93,7 +93,7 @@ def readNotice(request):
 <p>软件信息：</p>
 <p>开发者：<b><font face="Consolas"><a href="https://pandaoxi.github.io/" target="_blank">PanDaoxi</a></font></b></p>
 <p>开发者邮箱（欢迎意见反馈和技术支持）：<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5paHiIKHiZ6P1NbU1KaXl8iFiYs" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a></p>
-<p><a href=""><kbd>Very_Control</kbd>软件已经开源，欢迎前来查看😀</a></p>
+<p><a href="https://github.com/pandaoxi-project/very-control/tree/main/Very_Control"><kbd>Very_Control</kbd>软件已经开源，欢迎前来查看😀</a></p>
 <center><a href="jump">回到主页</a></center>
 """
     )
