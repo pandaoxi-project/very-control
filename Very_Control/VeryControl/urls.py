@@ -18,7 +18,7 @@ for voice in voices:
     tts_name.append(voice.name) 
 engine.stop()
 del engine
-tts_name.append('Windows <kbd>sAPI.spVoice</kbd>')
+tts_name.append('Windows <kbd>SAPI.spVoice</kbd>')
 
 # 求最大公因数
 def gcd(a, b):
@@ -251,21 +251,26 @@ def showMessage(request):
             f.write("from easygui import msgbox\nmsgbox('''%s''',\"Very Control\")" % msg)
         system("start /min cmd /c temp.py")
     if reader:
+        tts_config = []
         try:
-            tts_config = []
             with open("TTS_config", "r", encoding="utf-8") as f:
                 tts_config = f.read().splitlines()
             c1, c2, c3 = int(tts_config[0]), int(tts_config[1]), float(tts_config[2])
         except:
             c1, c2, c3 = 0, 100, 1.0
-        engine = ttsInit()
-        engine.setProperty("rate", c2)
-        engine.setProperty("volume", c3)
-        voices = engine.getProperty("voices") 
-        engine.setProperty("voice", voices[c1].id)
-        engine.say(reader)
-        engine.runAndWait()
-        engine.stop()
+        if tts_config[0] == "2":
+            with open("say.vbs", "w", encoding="ANSI") as f:
+                f.write("set sapi = createObject(\"SAPI.SpVoice\")\nsapi.Speak \"%s\"" % reader)
+            system("start /min cmd /c call \"say.vbs\"")
+        else:
+            engine = ttsInit()
+            engine.setProperty("rate", c2)
+            engine.setProperty("volume", c3)
+            voices = engine.getProperty("voices") 
+            engine.setProperty("voice", voices[c1].id)
+            engine.say(reader)
+            engine.runAndWait()
+            engine.stop()
     return HttpResponse("""<center><h1>发送成功！✨</h1></center><meta http-equiv="refresh" content="2;url=sendm"/>""")
 
 
@@ -287,10 +292,10 @@ opacity:0.6;
 </style>
     <form id="setup" action="/upd_tts" method="post" enctype="multipart/form-data">    
     <h1>Very Control - 自定义 TTS 朗读者</h1>    
-    <p>设置朗读者音色：<br>
-        %s
+    <p>设置朗读者音色：<br><br>
+    %s
     </p>
-    <p>以下设置，仅对非<kbd>sAPI</kbd>有效。
+    <p>以下设置，仅对非 <kbd>SAPI</kbd> 有效；错误的设置将使用默认值。</p>
     <p>语速：<input type="text" name="tts_speed" placeholder="输入正整数，默认为 100"/><p>
     <p>音量：<input type="text" name="tts_volume" placeholder="输入小数，默认为 1.0"/><p>
     <p><a href="/upd_tts">恢复默认设置</a></p>
